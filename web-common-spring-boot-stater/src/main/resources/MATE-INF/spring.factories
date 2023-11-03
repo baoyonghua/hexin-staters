@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.myhexin.b2c.web.config.WebCommonAutoConfiguration
