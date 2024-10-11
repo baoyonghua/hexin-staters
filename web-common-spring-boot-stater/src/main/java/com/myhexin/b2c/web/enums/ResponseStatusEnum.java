@@ -13,7 +13,13 @@ public enum ResponseStatusEnum implements ResponseStatus {
      * 响应状态枚举
      */
     SUCCESS(200, "成功"),
+
+    // -------------------------------------------
+
     SYSTEM_ERROR(500, "系统内部错误"),
+
+    // ---------------------------------------------------------
+
     CLIENT(400, "请求错误"),
     PARAM_VALID_ERROR(400, "请求参数错误");
 

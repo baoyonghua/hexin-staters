@@ -14,6 +14,8 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * 返回给前端的通用分页包装
@@ -94,5 +96,16 @@ public class PageResponse<T extends Serializable> implements Serializable {
                 .setTotal(Math.toIntExact(total))
                 .setTotalPage(Math.toIntExact(totalPage))
                 .build();
+    }
+
+    public <U extends Serializable> PageResponse<U> convert(Function<T, U> function) {
+        List<U> us = records.stream().map(function).collect(Collectors.toList());
+        return PageResponseBuilder.<U>create()
+             .setRecords(us)
+             .setCurrentPage(Math.toIntExact(currentPage))
+             .setPageSize(Math.toIntExact(pageSize))
+             .setTotal(Math.toIntExact(total))
+             .setTotalPage(Math.toIntExact(totalPage))
+             .build();
     }
 }

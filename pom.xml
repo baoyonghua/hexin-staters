@@ -15,6 +15,8 @@
         <hutool.version>5.8.20</hutool.version>
         <mysql.version>8.0.20</mysql.version>
         <lombok.version>1.18.26</lombok.version>
+        <caffine.version>3.1.6</caffine.version>
+        <hibernate-validator.version>6.0.1.Final</hibernate-validator.version>
     </properties>
 
     <parent>
@@ -55,7 +57,12 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>6.0.1.Final</version>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffine.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -63,6 +70,10 @@
     <modules>
         <module>web-common-spring-boot-stater</module>
         <module>staters-test</module>
+        <module>xxl-job-spring-boot-starter</module>
+        <module>hexin-boot-starter-spare-cache</module>
+        <module>hexin-boot-starter-idempotent</module>
+        <module>hexin-boot-common</module>
     </modules>
 
 

@@ -4,7 +4,7 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
-import com.myhexin.b2c.web.dto.PageBaseDTO;
+import com.myhexin.b2c.web.dto.QueryPageDTO;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -63,7 +63,7 @@ public class PageBuilder<T> implements Build<PageDTO<T>> {
         return build(this);
     }
 
-    public PageDTO<T> build(PageBaseDTO dto) {
+    public PageDTO<T> build(QueryPageDTO dto) {
         PageBuilder<T> builder = PageBuilder.<T>create().setCurrentPage(dto.getCurrentPage())
                 .setPageSize(dto.getPageSize())
                 .setSortAsc(dto.getSortAsc())

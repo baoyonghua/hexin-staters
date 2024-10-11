@@ -1,11 +1,10 @@
 package com.myhexin.b2c.web.core.handler;
 
 import com.myhexin.b2c.web.enums.ResponseStatusEnum;
+import com.myhexin.b2c.web.exceptions.ClientException;
 import com.myhexin.b2c.web.exceptions.SystemException;
 import com.myhexin.b2c.web.vo.Response;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -25,7 +24,6 @@ import java.util.Set;
  * @author baoyh
  * @since 2023/10/14
  */
-//@ConditionalOnProperty()
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
@@ -96,8 +94,15 @@ public class GlobalExceptionHandler {
             if (!Objects.isNull(exception.getCode())) {
                 code = exception.getCode();
             }
+            log.error("Triggering system exception, cause: ", e);
+        } else if (e instanceof ClientException) {
+            // 如果为客户端异常则获取code
+            ClientException exception = (ClientException) e;
+            if (!Objects.isNull(exception.getCode())) {
+                code = exception.getCode();
+            }
         }
         // 返回给前端统一的错误返回
-        return Response.error(code, e.toString());
+        return Response.error(code, e.getMessage());
     }
 }

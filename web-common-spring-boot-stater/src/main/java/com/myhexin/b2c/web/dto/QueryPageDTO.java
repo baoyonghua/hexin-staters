@@ -1,19 +1,12 @@
 package com.myhexin.b2c.web.dto;
 
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.metadata.OrderItem;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * 用于接收前端传入的分页参数
@@ -22,8 +15,7 @@ import java.util.Objects;
  * @since 2023/10/14
  */
 @Data
-@Builder
-public class PageBaseDTO implements Serializable {
+public class QueryPageDTO<T> implements Serializable {
 
     /**
      * 每页数量
@@ -52,4 +44,10 @@ public class PageBaseDTO implements Serializable {
      */
     @JsonProperty("sort_asc")
     private Boolean sortAsc;
+
+    /**
+     * 查询参数
+     */
+    @Valid
+    private T params;
 }

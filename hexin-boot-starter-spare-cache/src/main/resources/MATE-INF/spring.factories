@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.myhexin.b2c.web.spare.cache.autoconfigure.SpareCacheConfiguration
